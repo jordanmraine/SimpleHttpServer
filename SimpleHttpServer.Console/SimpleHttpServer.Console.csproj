@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleHttpServer.Core\SimpleHttpServer.Core.csproj">
+      <Project>{0b3b6b7e-24ee-4cc4-9350-cef564bb69bd}</Project>
+      <Name>SimpleHttpServer.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
