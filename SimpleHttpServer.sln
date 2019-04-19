@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleHttpServer.Console", "SimpleHttpServer.Console\SimpleHttpServer.Console.csproj", "{E0BF4B18-A9F8-4317-8EBD-1E955D325A45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleHttpServer.Server", "SimpleHttpServer.Server\SimpleHttpServer.Server.csproj", "{0B3B6B7E-24EE-4CC4-9350-CEF564BB69BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleHttpServer.Core", "SimpleHttpServer.Core\SimpleHttpServer.Core.csproj", "{0B3B6B7E-24EE-4CC4-9350-CEF564BB69BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

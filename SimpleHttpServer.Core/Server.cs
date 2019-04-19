@@ -7,11 +7,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SimpleHttpServer.Server
+namespace SimpleHttpServer.Core
 {
     public static class Server
     {
-        private static int _maxSimultaneousConnections;
+        private static int _maxSimultaneousConnections = 20;
 
         public static int MaxSimultaneousConnections
         {
@@ -103,6 +103,7 @@ namespace SimpleHttpServer.Server
 
             foreach (IPAddress ipAddress in ipAddresses)
             {
+                Console.WriteLine($"Listening on http://{ipAddress}/");
                 httpListener.Prefixes.Add($"http://{ipAddress}/");
             }
 
