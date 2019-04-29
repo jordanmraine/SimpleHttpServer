@@ -11,6 +11,8 @@ namespace SimpleHttpServer.Core
 {
     public static class Server
     {
+        private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         private static int _maxSimultaneousConnections = 20;
 
         public static int MaxSimultaneousConnections
@@ -71,6 +73,8 @@ namespace SimpleHttpServer.Core
             ConnectionsSemaphore.Release();
 
             // Handle the request.
+            LogRequest(context.Request);
+
             const string response = "Hello World";
             byte[] encoded = Encoding.UTF8.GetBytes(response);
             context.Response.ContentLength64 = encoded.Length;
@@ -108,6 +112,20 @@ namespace SimpleHttpServer.Core
             }
 
             return httpListener;
+        }
+
+        #endregion
+
+        #region Logging
+
+        private static void LogRequest(HttpListenerRequest httpListenerRequest)
+        {
+            // Note: Not using concatentation / interpolation as NLog
+            // defers the formatting, reducing overhead.
+            Logger.Info("Request: {0} {1} /{2}",
+                httpListenerRequest.RemoteEndPoint,
+                httpListenerRequest.HttpMethod,
+                httpListenerRequest.Url.AbsoluteUri);
         }
 
         #endregion
