@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using NLog.Config;
+using NLog.Targets;
+
 namespace SimpleHttpServer.Core
 {
     public static class Server
@@ -35,6 +38,8 @@ namespace SimpleHttpServer.Core
         /// </summary>
         public static async void Start()
         {
+            ConfigureLogger();
+
             IList<IPAddress> localhostIps = await GetLocalHostIpsAsync();
             HttpListener httpListener = InitializeHttpListenerForIps(localhostIps, true);
             StartInternal(httpListener);
@@ -117,6 +122,25 @@ namespace SimpleHttpServer.Core
         #endregion
 
         #region Logging
+
+        /// <summary>
+        /// Sets up the logger.
+        /// </summary>
+        private static void ConfigureLogger()
+        {
+            LoggingConfiguration loggingConfiguration = new LoggingConfiguration();
+
+            ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget("consoleTarget")
+            {
+                Layout = @"${date:format=HH\:mm\:ss} ${message}"
+            };
+
+            loggingConfiguration.AddTarget(consoleTarget);
+
+            loggingConfiguration.AddRuleForAllLevels(consoleTarget);
+
+            NLog.LogManager.Configuration = loggingConfiguration;
+        }
 
         private static void LogRequest(HttpListenerRequest httpListenerRequest)
         {
