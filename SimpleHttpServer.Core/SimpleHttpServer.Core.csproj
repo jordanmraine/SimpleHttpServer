@@ -8,4 +8,10 @@
     <PackageReference Include="NLog" Version="4.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleHttpServer.Content\SimpleHttpServer.Content.csproj">
+      <Private>true</Private>
+    </ProjectReference>
+  </ItemGroup>
+
 </Project>
